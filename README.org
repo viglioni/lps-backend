@@ -1,0 +1,16 @@
+* LPs backend
+  A backend project to help manage my LPs and study marbleJS
+* Install
+  #+begin_src shell :exports both 
+    npm i
+  #+end_src
+* Run 
+** Dev mode
+   #+begin_src shell :exports both 
+     npm run dev
+   #+end_src
+** Prod mode
+   #+begin_src shell :exports both 
+     npm run build
+     npm run start
+   #+end_src
