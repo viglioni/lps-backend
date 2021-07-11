@@ -1,5 +1,26 @@
 * LPs backend
-  A backend project to help manage my LPs and study marbleJS
+** about  
+   A backend project to help manage my LPs and study marbleJS
+   This project uses:
+   - [[https://docs.marblejs.com/][MarbleJS]]
+   - [[https://www.learnrxjs.io/][RxJS]]
+   - [[https://typeorm.io/][TypeORM]]
+   - [[https://gcanti.github.io/fp-ts/][fp-ts]]
+     
+** endpoints
+   |-----+------+-------------------------------------------|
+   | GET | /lps | returns the current LPs in the DB (mysql) |
+   |-----+------+-------------------------------------------|
+** Obs.:
+   This project expects an .env file with the following content:
+   #+begin_src shell :exports both 
+     PORT=
+     
+     DB_USER=""
+     DB_HOST=""
+     DB_NAME=""
+     DB_PASSWD=""
+   #+end_src
 * Install
   #+begin_src shell :exports both 
     npm i
