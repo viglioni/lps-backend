@@ -1,0 +1,43 @@
+{
+  "name": "lps-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && tsc -p tsconfig.json && echo \"build finished with success\"",
+    "dev": "NODE_ENV=dev && ts-node-dev -r dotenv/config --transpile-only src/main.ts",
+    "start": "NODE_ENV=prod && node -r dotenv/config dist/main.js",
+    "lint": "eslint --ext ts src",
+    "lint:fix": "npm run lint -- --fix && echo \"linter finished with success\"",
+    "prettier:check": "prettier --check **/*.ts **/*.json **/.*.json **/*.yml",
+    "prettier:fix": "prettier --write **/*.ts **/*.json **/.*.json && echo \"prettier finished with success\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "author": "Laura Viglioni",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@marblejs/core": "^3.5.0",
+    "@marblejs/middleware-body": "^3.5.0",
+    "fp-ts": "^2.10.5",
+    "mysql": "^2.18.1",
+    "ramda": "^0.27.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.7",
+    "typeorm": "^0.2.34"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.1",
+    "@types/ramda": "^0.27.44",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.30.0",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-sonarjs": "^0.9.1",
+    "husky": "^7.0.1",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
