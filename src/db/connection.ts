@@ -13,8 +13,8 @@ type DataBaseCredentials = {
 function getCredentials(): Either<ErrorMsg, DataBaseCredentials> {
   const credentials = {
     database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWD,
-    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    username: process.env.DB_USERNAME,
     host: process.env.DB_HOST,
   } as DataBaseCredentials
 
