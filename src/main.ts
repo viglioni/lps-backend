@@ -1,15 +1,13 @@
 import { createServer, httpListener } from '@marblejs/core'
 import { bodyParser$ } from '@marblejs/middleware-body'
-import { IO } from 'fp-ts/lib/IO'
-import * as Task from 'fp-ts/lib/Task'
+import { IO, of } from 'fp-ts/lib/IO'
 import 'reflect-metadata'
-import { connectToDb } from './db/connection'
+import { createConnection } from 'typeorm'
 import { helloThere } from './hello-there/hello-there.controller'
 import { lps } from './lps/lps.controller'
-import { tryCatch } from 'fp-ts/lib/TaskEither'
 import * as Env from './shared/env'
 
-async function prepareServer(): Promise<void> {
+async function main(): Promise<IO<void>> {
   const middlewares = [bodyParser$()]
 
   const effects = [helloThere, lps]
@@ -24,16 +22,14 @@ async function prepareServer(): Promise<void> {
     listener,
   })
 
-  tryCatch(Task.of(connectToDb()), err => {
-    console.error(err)
+  await createConnection().catch(err => {
+    console.error('Problem connecting to the database: ' + JSON.stringify(err))
     process.exit()
   })
 
   server()
+
+  return of({})
 }
 
-function main(): IO<void> {
-  return () => prepareServer()
-}
-
-main()()
+main()
