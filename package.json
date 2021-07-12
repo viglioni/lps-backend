@@ -11,7 +11,8 @@
     "lint:fix": "npm run lint -- --fix && echo \"linter finished with success\"",
     "prettier:check": "prettier --check **/*.ts **/*.json **/.*.json **/*.yml",
     "prettier:fix": "prettier --write **/*.ts **/*.json **/.*.json && echo \"prettier finished with success\"",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "typeorm": "TYPEORM_MIGRATIONS=src/db/migrations/*.ts ts-node --transpile-only ./node_modules/.bin/typeorm"
   },
   "author": "Laura Viglioni",
   "license": "GPL-3.0",
