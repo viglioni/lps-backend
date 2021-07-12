@@ -18,6 +18,7 @@
   "dependencies": {
     "@marblejs/core": "^3.5.0",
     "@marblejs/middleware-body": "^3.5.0",
+    "dotenv": "^10.0.0",
     "fp-ts": "^2.10.5",
     "mysql": "^2.18.1",
     "ramda": "^0.27.1",
@@ -30,7 +31,6 @@
     "@types/ramda": "^0.27.44",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
-    "dotenv": "^10.0.0",
     "eslint": "^7.30.0",
     "eslint-plugin-immutable": "^1.0.0",
     "eslint-plugin-sonarjs": "^0.9.1",
