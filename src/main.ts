@@ -8,6 +8,7 @@ import 'reflect-metadata'
 import { connectoToDB } from './db/connection'
 import { helloThere } from './hello-there/hello-there.controller'
 import { lps } from './lps/lps.controller'
+import { cors } from './middlewares/cors.middleware'
 import * as Env from './shared/env'
 import { ErrorMsg } from './shared/types'
 
@@ -17,7 +18,7 @@ function killServer(err: ErrorMsg): T.Task<unknown> {
 }
 
 async function main(): Promise<IO<void>> {
-  const middlewares = [bodyParser$()]
+  const middlewares = [cors, bodyParser$()]
 
   const effects = [helloThere, lps]
 

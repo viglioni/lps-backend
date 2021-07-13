@@ -19,6 +19,7 @@
   "dependencies": {
     "@marblejs/core": "^3.5.0",
     "@marblejs/middleware-body": "^3.5.0",
+    "@marblejs/middleware-cors": "^3.5.0",
     "dotenv": "^10.0.0",
     "fp-ts": "^2.10.5",
     "mysql": "^2.18.1",
