@@ -36,9 +36,17 @@
     "eslint-plugin-immutable": "^1.0.0",
     "eslint-plugin-sonarjs": "^0.9.1",
     "husky": "^7.0.1",
+    "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "ts-node": "^10.1.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
+  },
+  "lint-staged": {
+    "*": [
+      "eslint --fix --quiet",
+      "prettier -w",
+      "git add"
+    ]
   }
 }
