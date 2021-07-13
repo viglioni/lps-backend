@@ -1,40 +1,43 @@
-import { Either, isLeft, left, right } from 'fp-ts/lib/Either'
+import { pipe } from 'fp-ts/lib/function'
+import {
+  left,
+  mapLeft,
+  TaskEither,
+  tryCatch,
+  chain,
+  map,
+} from 'fp-ts/lib/TaskEither'
 import R from 'ramda'
-import { Connection, ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm'
+import {
+  Connection,
+  ConnectionOptions,
+  createConnection,
+  getConnectionOptions,
+} from 'typeorm'
 import { ErrorMsg } from '../shared/types'
 
-type DataBaseCredentials = {
-  database: string
-  password: string
-  username: string
-  host: string
-}
-
-function getCredentials(): Either<ErrorMsg, DataBaseCredentials> {
+function getConnectionConfig(): TaskEither<ErrorMsg, ConnectionOptions> {
   const credentials = {
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
     username: process.env.DB_USERNAME,
     host: process.env.DB_HOST,
-  } as DataBaseCredentials
-
-  return R.all(Boolean, R.values(credentials))
-    ? right(credentials)
-    : left('Failed to get database credentials')
-}
-
-export async function connectoToDB(): Promise<Either<ErrorMsg, Connection>> {
-  const credentials = getCredentials()
-  if (isLeft(credentials)) {
-    return credentials
   }
 
-  const connOpts = await getConnectionOptions()
+  if (R.any(R.isNil, R.values(credentials))) {
+    return left('Failed to get database credentials')
+  }
 
-  return createConnection({
-    ...connOpts,
-    ...credentials.right,
-  } as ConnectionOptions)
-    .then(right)
-    .catch(left)
+  return pipe(
+    tryCatch(getConnectionOptions, R.toString),
+    map(opts => ({ ...opts, ...credentials } as ConnectionOptions)),
+  )
+}
+
+export function connectoToDB(): TaskEither<ErrorMsg, Connection> {
+  return pipe(
+    getConnectionConfig(),
+    chain(opts => tryCatch(() => createConnection(opts), R.toString)),
+    mapLeft(R.concat('Problem connecting to the database: ')),
+  )
 }
