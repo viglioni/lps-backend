@@ -23,4 +23,10 @@ export class LPsEntity {
 
   @Column({ nullable: false })
   cover_url!: string
+
+  @Column()
+  origin?: string
+
+  @Column()
+  gift_from?: string
 }
