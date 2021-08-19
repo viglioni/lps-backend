@@ -3,7 +3,11 @@ import { LPsEntity } from './entities/lps.entity'
 import { PreSaveLpsEntity } from './lps.decoders'
 
 const getAllLPs = (): Promise<LPsEntity[]> =>
-  getRepository(LPsEntity).createQueryBuilder().getMany()
+  getRepository(LPsEntity)
+    .createQueryBuilder()
+    .orderBy('artist', 'ASC')
+    .addOrderBy('year', 'ASC')
+    .getMany()
 
 const saveLP = (lp: PreSaveLpsEntity): Promise<LPsEntity> =>
   getRepository(LPsEntity).save(lp)
