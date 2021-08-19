@@ -1,5 +1,9 @@
 /* eslint-disable camelcase */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 
 @Entity('lps')
 export class LPsEntity {
