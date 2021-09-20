@@ -28,6 +28,7 @@ const preCreateLp = (reqBody: AddLp): PreSaveLpsEntity => {
     gift_from: reqBody.giftFrom,
     cover_url,
     for_sale: reqBody.forSale,
+    date_is_wrong: reqBody.dateIsWrong,
   }
 }
 

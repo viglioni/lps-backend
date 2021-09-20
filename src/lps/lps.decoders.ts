@@ -16,6 +16,7 @@ export const addLpDecoder = pipe(
       origin: D.string,
       giftFrom: D.string,
       forSale: D.boolean,
+      dateIsWrong: D.boolean,
     }),
   ),
 )
