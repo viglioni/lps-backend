@@ -21,8 +21,8 @@ const preCreateLp = (reqBody: AddLp): PreSaveLpsEntity => {
   return {
     name: reqBody.name,
     artist: reqBody.artist,
-    released: new Date(reqBody.released),
-    purchase_date: new Date(reqBody.purchaseDate),
+    released: reqBody.released,
+    purchase_date: reqBody.purchaseDate,
     value: reqBody.value,
     origin: reqBody.origin,
     gift_from: reqBody.giftFrom,
