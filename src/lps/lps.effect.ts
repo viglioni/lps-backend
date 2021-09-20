@@ -20,7 +20,7 @@ import { writeAuthMiddleware } from './middlewares/lps.auth.middleware'
 export const getAllLPsEffect: HttpEffect = req =>
   req.pipe(
     rx.mergeMap(repo.getAllLPs),
-    rx.map(LPs => ({ body: { LPs } })),
+    rx.map(lps => ({ body: lps })),
   )
 
 const decodeReq = rx.mergeMap((req: HttpRequest) =>

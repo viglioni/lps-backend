@@ -16,11 +16,11 @@ export class LPsEntity {
   @Column({ nullable: false })
   name!: string
 
-  @Column({ nullable: false })
-  year!: number
+  @Column({ nullable: false, type: 'date' })
+  released!: string
 
-  @Column({ nullable: false })
-  purchase_date!: Date
+  @Column({ nullable: false, type: 'date' })
+  purchase_date!: string
 
   @Column({ nullable: false })
   value!: string
@@ -33,4 +33,10 @@ export class LPsEntity {
 
   @Column()
   gift_from?: string
+
+  @Column({ nullable: true, default: false })
+  for_sale?: boolean
+
+  @Column({ nullable: true, default: false })
+  date_is_wrong?: boolean
 }

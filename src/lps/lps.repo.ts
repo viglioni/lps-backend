@@ -6,7 +6,7 @@ const getAllLPs = (): Promise<LPsEntity[]> =>
   getRepository(LPsEntity)
     .createQueryBuilder()
     .orderBy('artist', 'ASC')
-    .addOrderBy('year', 'ASC')
+    .addOrderBy('released', 'ASC')
     .getMany()
 
 const saveLP = (lp: PreSaveLpsEntity): Promise<LPsEntity> =>
