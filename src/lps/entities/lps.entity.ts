@@ -25,6 +25,9 @@ export class LPsEntity {
   @Column({ nullable: false })
   value!: string
 
+  @Column()
+  sale_price?: string
+
   @Column({ nullable: false })
   cover_url!: string
 
