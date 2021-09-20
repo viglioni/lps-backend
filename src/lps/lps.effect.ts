@@ -42,3 +42,12 @@ export const addNewLPEffect: HttpEffect = req =>
     rx.mergeMap(repo.saveLP),
     rx.map(body => ({ body })),
   )
+
+/**
+ * Gets all LPs that are for sale
+ */
+export const getAllForSaleEffect: HttpEffect = req =>
+  req.pipe(
+    rx.mergeMap(repo.getAllForSale),
+    rx.map(body => ({ body })),
+  )

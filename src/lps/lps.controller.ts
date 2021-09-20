@@ -1,6 +1,7 @@
 import { combineRoutes, r } from '@marblejs/core'
 import {
   addNewLPEffect,
+  getAllForSaleEffect,
   getAllLPsEffect,
 } from './lps.effect'
 
@@ -16,7 +17,13 @@ const addNewLPRoute = r.pipe(
   r.useEffect(addNewLPEffect),
 )
 
+const getAllForSale = r.pipe(
+  r.matchPath('/for-sale'),
+  r.matchType('GET'),
+  r.useEffect(getAllForSaleEffect),
+)
+
 export const lps = combineRoutes('lps', {
   middlewares: [],
-  effects: [getAllLPsRoute, addNewLPRoute],
+  effects: [getAllLPsRoute, addNewLPRoute, getAllForSale],
 })
