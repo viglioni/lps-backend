@@ -51,3 +51,12 @@ export const getAllForSaleEffect: HttpEffect = req =>
     rx.mergeMap(repo.getAllForSale),
     rx.map(body => ({ body })),
   )
+
+/**
+ * Gets a random LP
+ */
+export const getRandomLPEffect: HttpEffect = req =>
+  req.pipe(
+    rx.mergeMap(repo.getRandomLP),
+    rx.map(body => ({ body })),
+  )

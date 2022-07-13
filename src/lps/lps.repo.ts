@@ -20,8 +20,15 @@ const getAllLPs = (): Promise<LPsEntity[]> =>
 const saveLP = (lp: PreSaveLpsEntity): Promise<LPsEntity> =>
   getRepository(LPsEntity).save(lp)
 
+const getRandomLP = (): Promise<LPsEntity> =>
+  getRepository(LPsEntity)
+    .createQueryBuilder()
+    .orderBy('RAND()')
+    .getOneOrFail()
+
 export default {
   getAllForSale,
   getAllLPs,
   saveLP,
+  getRandomLP,
 }

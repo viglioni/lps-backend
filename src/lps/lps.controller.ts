@@ -3,6 +3,7 @@ import {
   addNewLPEffect,
   getAllForSaleEffect,
   getAllLPsEffect,
+  getRandomLPEffect,
 } from './lps.effect'
 
 const getAllLPsRoute = r.pipe(
@@ -23,7 +24,18 @@ const getAllForSale = r.pipe(
   r.useEffect(getAllForSaleEffect),
 )
 
+const getRandomLp = r.pipe(
+  r.matchPath('/random'),
+  r.matchType('GET'),
+  r.useEffect(getRandomLPEffect),
+)
+
 export const lps = combineRoutes('lps', {
   middlewares: [],
-  effects: [getAllLPsRoute, addNewLPRoute, getAllForSale],
+  effects: [
+    getAllLPsRoute,
+    addNewLPRoute,
+    getAllForSale,
+    getRandomLp,
+  ],
 })

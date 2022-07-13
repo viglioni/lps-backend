@@ -11,6 +11,7 @@
    |------+-----------+-------------------------------------------|
    | GET  | /lps      | returns the current LPs in the DB (mysql) |
    | GET  | /for-sale | returns all the LPs that are for sale     |
+   | GET  | /random   | returns a random LP                       |
    | POST | /new      | adds new LP to the DB                     |
    |------+-----------+-------------------------------------------|
 
