@@ -21,7 +21,7 @@
      
      DB_USERNAME=
      DB_HOST=
-     DB_NAME=
+     DB_DATABASE=
      DB_PASSWORD=
    #+end_src
 * Install
