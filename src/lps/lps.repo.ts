@@ -1,3 +1,4 @@
+import * as O from 'fp-ts/Option'
 import { getRepository } from 'typeorm'
 import { LPsEntity } from './entities/lps.entity'
 import { PreSaveLpsEntity } from './lps.decoders'
@@ -26,9 +27,20 @@ const getRandomLP = (): Promise<LPsEntity> =>
     .orderBy('RAND()')
     .getOneOrFail()
 
+type GetLP = (p: {
+  name: string
+  artist: string
+}) => Promise<O.Option<LPsEntity>>
+const getLP: GetLP = ({ name, artist }) =>
+  getRepository(LPsEntity)
+    .findOneOrFail({ where: { name, artist } })
+    .then(O.some)
+    .catch(_e => O.none)
+
 export default {
   getAllForSale,
   getAllLPs,
   saveLP,
   getRandomLP,
+  getLP,
 }
