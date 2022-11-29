@@ -1,0 +1,52 @@
+#+title: Add vinyls in batch
+
+#+name: lps-table
+|--------+------+----------+--------------+-------+--------+----------+---------+-------------|
+| artist | name | released | purchaseDate | value | origin | giftFrom | forSale | dateIsWrong |
+|--------+------+----------+--------------+-------+--------+----------+---------+-------------|
+|        |      |          |              |       |        |          |         |             |
+|--------+------+----------+--------------+-------+--------+----------+---------+-------------|
+
+#+begin_src js :exports both :results output :var lpsTable=lps-table
+  // Must use node 18!
+
+  const addEndpoint = 'http://localhost:3000/lps/new'
+
+  const queryParams = lp => ({
+    method: 'POST',
+    body: JSON.stringify(lp),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const addOne = (lp = {}) =>
+    fetch(addEndpoint, queryParams(lp))
+      .then(response => response.json())
+      .then(console.log)
+      .catch(console.log)
+
+  const addBatch = lps => Promise.allSettled(lps.map(addOne))
+
+  const zipEl = vals => (key, idx) =>
+    vals[idx] === '' ? null : { [key]: vals[idx] }
+
+  const zipObjAndParse = keys => vals => {
+    const obj = keys
+      .map(zipEl(vals))
+      .filter(Boolean)
+      .reduce((acc, val) => ({ ...acc, ...val }), {})
+
+    return obj.dateIsWrong
+      ? { ...obj, dateIsWrong: true }
+      : obj
+  }
+
+  const [keys, ...values] = lpsTable
+
+  const lps = values.map(zipObjAndParse(keys))
+
+  addBatch(lps)
+#+end_src
+
+
