@@ -32,7 +32,7 @@ async function main(): Promise<IO<void>> {
     listener,
   })
 
-  //await pipe(connectoToDB(), TE.fold(killServer, T.of))()
+  await pipe(connectoToDB(), TE.fold(killServer, T.of))()
 
   server()
 
